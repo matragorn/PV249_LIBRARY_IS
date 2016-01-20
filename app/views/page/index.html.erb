@@ -1,0 +1,38 @@
+<% content_for :top_content do %>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome <% if user_signed_in? %><%= current_user.name %><% end %>To Library IS!</h1>
+          <% if user_signed_in? %>
+
+            <hr   class="custom-hr">
+            <h3>Quick Links:</h3>
+
+
+            <div class="form-group">
+            <strong>Search Book:</strong>
+              <%= form_tag(books_path, :method => "get", id: "search-form") do %>
+                  <%= text_field_tag :search, params[:search], placeholder: "Search Books"  %>
+                  <%= submit_tag "Search Book" %>
+              <% end %>
+            </div>
+
+            <strong>Search Author:</strong>
+
+            <%= form_tag(authors_path, :method => "get", id: "search-form") do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search Authors" %>
+                <%= submit_tag "Search Author" %>
+            <% end %>
+
+      <% else %>
+            <p>Register to get started.</p>
+            <p>
+              <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+            </p>
+            <p>Already have an account? Log In.</p>
+            <p>
+              <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary btn-lg' %>
+            </p>
+          <% end %>
+      </div>
+    </div>
+<% end %>

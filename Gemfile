@@ -1,7 +1,13 @@
 source 'https://rubygems.org'
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'cancancan'
+gem 'rolify'
+gem 'letter_opener'
+gem 'rails_12factor', group: :production
+gem 'jquery-turbolinks'
+gem 'devise'
+gem 'bootstrap-sass'
+gem 'pry', '~> 0.10.3'# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
