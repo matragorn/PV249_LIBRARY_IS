@@ -15,8 +15,8 @@
   <tbody>
     <% @borrowings.each do |borrowing| %>
       <tr>
-        <td><%= borrowing.user %></td>
-        <td><%= borrowing.book %></td>
+        <td><%= borrowing.user.name %></td>
+        <td><%= borrowing.book.title %></td>
         <td><%= borrowing.due_date %></td>
         <td><%= link_to 'Show', borrowing %></td>
         <td><%= link_to 'Edit', edit_borrowing_path(borrowing) %></td>

@@ -4,7 +4,6 @@ class Book < ActiveRecord::Base
   has_and_belongs_to_many :tags
 
   def self.search(search)
-    where("title LIKE ?", "%#{search}%")
-    where("description LIKE ?", "%#{search}%")
+    where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
   end
 end

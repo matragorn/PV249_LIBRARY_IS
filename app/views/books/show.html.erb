@@ -12,12 +12,12 @@
 
 <p>
   <strong>Author:</strong>
-  <%= @book.author %>
+  <%= @book.author.name %>
 </p>
 
 <p>
   <strong>Office:</strong>
-  <%= @book.office %>
+  <%= @book.office.name %>
 </p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
