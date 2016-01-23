@@ -83,5 +83,3 @@ books = Book.create([{ title: 'A Tale Of Two Cities',
                        office: offices[2]
                      }
                     ])
-
-#TODO sample posts, tags & users
