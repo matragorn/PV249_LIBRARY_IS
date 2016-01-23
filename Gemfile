@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "paperclip", "~> 4.3"
 gem 'cancancan'
 gem 'rolify'
 gem 'letter_opener'

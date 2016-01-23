@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160120193611) do
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.attachment :avatar
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

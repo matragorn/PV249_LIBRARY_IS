@@ -1,7 +1,8 @@
 <% content_for :top_content do %>
     <div class="jumbotron">
       <div class="container">
-        <h1>Welcome <% if user_signed_in? %><%= current_user.name %><% end %>To Library IS!</h1>
+        <%= image_tag current_user.avatar.url(:thumb) %>
+        <h1>Welcome <% if user_signed_in? %><%= current_user.name %><% end %> To Library IS!</h1>
           <% if user_signed_in? %>
 
             <hr   class="custom-hr">
