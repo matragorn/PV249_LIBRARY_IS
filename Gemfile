@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'exception_notification'
+gem 'mailjet'
 gem "paperclip", "~> 4.3"
 gem 'cancancan'
 gem 'rolify'

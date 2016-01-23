@@ -38,13 +38,28 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :mailjet #:letter_opener
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }#{ host: 'localhost:3000' }
   # Defaults to:
   # config.action_mailer.sendmail_settings = {
   #   :location => '/usr/sbin/sendmail',
   #   :arguments => '-i -t'
   # }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+                                          :email => {
+                                              :email_prefix => "[RUBY_FINAL] ",
+                                              :sender_address => %{"notifier" <rubymailruby@gmail.com>},
+                                              :exception_recipients => %w{rubymailruby@gmail.com}
+                                          }
+
+  Mailjet.configure do |config|
+    config.api_key = 'f8ce1076dd18a1f1a05b700eecb1e44f'
+    config.secret_key = '756333569d28b0f47594dc4ab5849e83'
+  end
+
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 end
