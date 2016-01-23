@@ -59,14 +59,33 @@ class AuthorsController < ApplicationController
   # DELETE /authors/1
   # DELETE /authors/1.json
   def destroy
-    @author.destroy
-    respond_to do |format|
-      format.html { redirect_to authors_url, notice: 'Author was successfully destroyed.' }
-      format.json { head :no_content }
+    unless books_of_author.empty?
+      respond_to do |format|
+        format.html { redirect_to authors_url, notice: 'Author can\'t be destroyed due to his books.' }
+        format.json { head :no_content }
+      end
+      return
+    end
+    if @author.destroy
+      respond_to do |format|
+        format.html { redirect_to authors_url, notice: 'Author was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
   private
+
+    def books_of_author
+      books = Set.new
+      Book.all.each do |b|
+        if b.author == @author
+          books.add(b)
+        end
+      end
+      books
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_author
       @author = Author.find(params[:id])
