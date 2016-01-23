@@ -66,6 +66,13 @@ class AuthorsController < ApplicationController
       end
       return
     end
+    unless borrowings_of_author.empty?
+      respond_to do |format|
+        format.html { redirect_to authors_url, notice: 'Author can\'t be destroyed due to his borrowings.' }
+        format.json { head :no_content }
+      end
+      return
+    end
     if @author.destroy
       respond_to do |format|
         format.html { redirect_to authors_url, notice: 'Author was successfully destroyed.' }
@@ -75,6 +82,16 @@ class AuthorsController < ApplicationController
   end
 
   private
+
+    def borrowings_of_author
+      borrowings = Set.new
+      Borrowing.all.each do |b|
+        if b.book == @book
+          borrowings.add(b)
+        end
+      end
+      borrowings
+    end
 
     def books_of_author
       books = Set.new
