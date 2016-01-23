@@ -26,6 +26,14 @@ class BorrowingsController < ApplicationController
   def create
     @borrowing = Borrowing.new(borrowing_params)
 
+    unless book_free?
+      respond_to do |format|
+        format.html { redirect_to @borrowing, notice: 'Borrowing was unsuccessfull. Book is already borrowed.' }
+        format.json { render :show, status: :created, location: @borrowing }
+      end
+      return
+    end
+
     respond_to do |format|
       if @borrowing.save
         format.html { redirect_to @borrowing, notice: 'Borrowing was successfully created.' }
@@ -62,6 +70,16 @@ class BorrowingsController < ApplicationController
   end
 
   private
+
+    def book_free?
+      Borrowing.all.each do |b|
+        if b.book == @borrowing.book
+          return false
+        end
+      end
+      true
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_borrowing
       @borrowing = Borrowing.find(params[:id])
