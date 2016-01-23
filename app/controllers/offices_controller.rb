@@ -54,6 +54,18 @@ class OfficesController < ApplicationController
   # DELETE /offices/1
   # DELETE /offices/1.json
   def destroy
+    unless borrowings_of_office.empty?
+      respond_to do |format|
+        format.html { redirect_to authors_url, notice: 'Office can\'t be destroyed due to existing borrowings.' }
+        format.json { head :no_content }
+      end
+      return
+    end
+
+    books_of_office.each do |b|
+      b.destroy
+    end
+
     @office.destroy
     respond_to do |format|
       format.html { redirect_to offices_url, notice: 'Office was successfully destroyed.' }
@@ -62,6 +74,27 @@ class OfficesController < ApplicationController
   end
 
   private
+
+  def books_of_office
+    books = Set.new
+    Book.all.each do |b|
+      if b.office == @office
+        books.add(b)
+      end
+    end
+    books
+  end
+
+  def borrowings_of_office
+    borrowings = Set.new
+    Borrowing.all.each do |b|
+      if b.book.office == @office
+        borrowings.add(b)
+      end
+    end
+    borrowings
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_office
       @office = Office.find(params[:id])
