@@ -59,6 +59,13 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
+    if borrowed?
+      respond_to do |format|
+        format.html { redirect_to books_url, notice: 'Book can\'t be destroyed, it is borrowed.' }
+        format.json { head :no_content }
+      end
+      return
+    end
     @book.destroy
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
@@ -67,6 +74,16 @@ class BooksController < ApplicationController
   end
 
   private
+
+    def borrowed?
+      Borrowing.all.each do |b|
+        if b.book == @book
+          return true
+        end
+      end
+      false
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
