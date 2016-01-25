@@ -15,5 +15,7 @@
   <%= @office.contact %>
 </p>
 
-<%= link_to 'Edit', edit_office_path(@office) %> |
+<% if current_user.has_role? :admin %>
+    <%= link_to 'Edit', edit_office_path(@office) %> |
+<% end %>
 <%= link_to 'Back', offices_path %>

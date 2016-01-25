@@ -83,3 +83,10 @@ books = Book.create([{ title: 'A Tale Of Two Cities',
                        office: offices[2]
                      }
                     ])
+
+u1 = User.create({name: 'admin', email: 'admin@gmail.com', password: 'password', password_confirmation: 'password', confirmed_at: DateTime.new(2009, 9, 1, 17)})
+u1.add_role(:admin)
+u1.save
+
+u2 = User.create({name: 'user', email: 'user@gmail.com', password: 'password', password_confirmation: 'password', confirmed_at: DateTime.new(2009, 9, 1, 17)})
+u2.save

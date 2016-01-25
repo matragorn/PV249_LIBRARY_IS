@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :borrowings
-  resources :books
+  resources :books do
+    resources :posts
+  end
   resources :posts
   resources :users
   resources :tags

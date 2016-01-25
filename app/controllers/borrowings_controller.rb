@@ -4,7 +4,11 @@ class BorrowingsController < ApplicationController
   # GET /borrowings
   # GET /borrowings.json
   def index
-    @borrowings = Borrowing.all
+    if current_user.has_role? :admin
+      @borrowings = Borrowing.all
+    else
+      @borrowings = Borrowing.where(:user_id => current_user.id)
+    end
   end
 
   # GET /borrowings/1
