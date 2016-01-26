@@ -2,7 +2,7 @@
 <%if current_user.has_role? :admin%>
 <h2>All Borrowings</h2>
     <p>
-      In the system, there <are></are> <%= @borrowings.count %> active borrowing:
+      In the system, there are <%= @borrowings.count %> active borrowing:
     </p>
 <%else%>
 <h2>Your Borrowings</h2>
