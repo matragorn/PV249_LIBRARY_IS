@@ -1,26 +1,47 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Borrowings</h1>
+<%if current_user.has_role? :admin%>
+<h2>All Borrowings</h2>
+    <p>
+      In the system, there <are></are> <%= @borrowings.count %> active borrowing:
+    </p>
+<%else%>
+<h2>Your Borrowings</h2>
+    <p>
+      <%= current_user.name%>, you have <%= @borrowings.count %> active borrowing:
+    </p>
+<%end%>
 
-<table>
+
+<table class = "table table-striped table-hover">
   <thead>
-    <tr>
-      <th>User</th>
-      <th>Book</th>
-      <th>Due date</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th>Author</th>
+    <th></th>
+    <th>Due date</th>
+    <%if current_user.has_role? :admin%>
+        <th>Borrower</th>
+        <th colspan="2"></th>
+    <% end %>
+
+  </tr>
   </thead>
 
   <tbody>
     <% @borrowings.each do |borrowing| %>
       <tr>
-        <td><%= borrowing.user.name %></td>
-        <td><%= borrowing.book.title %></td>
-        <td><%= borrowing.due_date %></td>
-        <td><%= link_to 'Show', borrowing %></td>
-        <td><%= link_to 'Edit', edit_borrowing_path(borrowing) %></td>
-        <td><%= link_to 'Destroy', borrowing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><strong><%= link_to borrowing.book.title, borrowing.book %></strong></td>
+        <td>by</td>
+        <td><%= link_to borrowing.book.author.name, borrowing.book.author%></td>
+        <td>borrowed to</td>
+        <td><%= link_to borrowing.due_date, borrowing %></td>
+        <%if current_user.has_role? :admin%>
+            <td><%=  link_to borrowing.user.name, borrowing.user  %></td>
+          <td><%= link_to 'Edit', edit_borrowing_path(borrowing), :class => "btn btn-warning" %></td>
+          <td>
+              <%= link_to 'Return', borrowing, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-success" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

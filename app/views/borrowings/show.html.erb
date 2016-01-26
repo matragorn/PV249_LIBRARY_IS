@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
 
+
+<h2>Borrowing n.  <%=@borrowing.id %>  </h2>
 <p>
   <strong>User:</strong>
   <%= @borrowing.user.name %>
@@ -15,5 +16,8 @@
   <%= @borrowing.due_date %>
 </p>
 
-<%= link_to 'Edit', edit_borrowing_path(@borrowing) %> |
-<%= link_to 'Back', borrowings_path %>
+<%if current_user.has_role? :admin%>
+    <%= link_to 'Edit', edit_borrowing_path(@borrowing), :class => "btn btn-warning" %> |
+    <%= link_to 'Return', @borrowing, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-success" %> |
+<%end%>
+<%= link_to 'Back', borrowings_path, :class => "btn btn-primary" %>

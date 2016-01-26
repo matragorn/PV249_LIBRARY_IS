@@ -15,3 +15,20 @@ hr.custom-hr {
   height: 1px;
   background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.75), transparent);
 }
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #f5f5f5;
+}
