@@ -1,26 +1,16 @@
 
-<h1>Listing Offices</h1>
+<h1>Our Offices</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Contact</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<table  class="table table-striped table-hover" >
   <tbody>
     <% @offices.each do |office| %>
       <tr>
-        <td><%= office.name %></td>
+        <td><%= link_to office.name, office %></td>
         <td><%= office.address %></td>
         <td><%= office.contact %></td>
-        <td><%= link_to 'Show', office %></td>
         <% if current_user.has_role? :admin %>
-            <td><%= link_to 'Edit', edit_office_path(office) %></td>
-            <td><%= link_to 'Destroy', office, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            <td><%= link_to 'Edit', edit_office_path(office), :class =>"btn btn-warning" %></td>
+            <td><%= link_to 'Remove', office, method: :delete, data: {confirm: 'Are you sure?'}, :class =>"btn btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -30,5 +20,5 @@
 <br>
 
 <% if current_user.has_role? :admin %>
-    <%= link_to 'New Office', new_office_path %>
+    <%= link_to 'New Office', new_office_path, :class =>"btn btn-success" %>
 <% end %>
