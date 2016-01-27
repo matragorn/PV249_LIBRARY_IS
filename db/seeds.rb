@@ -42,6 +42,21 @@ books = Book.create([{ title: 'A Tale Of Two Cities',
                        author: authors[3],
                        office: offices[0]
                      },
+                     { title: 'Harry Potter and the Chamber of Secrets',
+                       description: 'The Dursleys were so mean that hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he\'s packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike.    And strike it does. For in Harry\'s second year at Hogwarts, fresh torments and horrors arise, including an outrageously stuck-up new professor, Gilderoy Lockheart, a spirit named Moaning Myrtle who haunts the girls\' bathroom, and the unwanted attentions of Ron Weasley\'s younger sister, Ginny.But each of these seem minor annoyances when the real trouble begins, and someone--or something--starts turning Hogwarts students to stone. Could it be Draco Malfoy, a more poisonous rival than ever? Could it possibly be Hagrid, whose mysterious past is finally told? Or could it be the one everyone at Hogwarts most suspects...Harry Potter himself?',
+                       author: authors[3],
+                       office: offices[0]
+                     },
+                     { title: 'Harry Potter and the Prisoner of Azkaban',
+                       description: 'For twelve long years, the dread fortress of Azkaban held an infamous prisoner named Sirius Black. Convicted of killing thirteen people with a single curse, he was said to be the heir apparent to the Dark Lord, Voldemort. Now he has escaped, leaving only two clues as to where he might be headed: Harry Potter\'s defeat of You-Know-Who was Black\'s downfall as well. And the Azkban guards heard Black muttering in his sleep, \"He\'s at Hogwarts...he\'s at Hogwarts.\" Harry Potter isn\'t safe, not even within the walls of his magical school, surrounded by his friends. Because on top of it all, there may well be a traitor in their midst.',
+                       author: authors[3],
+                       office: offices[1]
+                     },
+                     { title: 'Harry Potter And The Goblet Of Fire ',
+                       description: 'Harry Potter is midway through his training as a wizard and his coming of age. Harry wants to get away from the pernicious Dursleys and go to the International Quidditch Cup. He wants to find out about the mysterious event that\'s supposed to take place at Hogwarts this year, an event involving two other rival schools of magic, and a competition that hasn\'t happened for a hundred years. He wants to be a normal, fourteen-year-old wizard. But unfortunately for Harry Potter, he\'s not normal - even by wizarding standards. And in his case, different can be deadly.',
+                       author: authors[3],
+                       office: offices[2]
+                     },
                      { title: 'And Then There Were None',
                        description: 'And Then There Were None is a mystery novel by Agatha Christie, widely considered her masterpiece and described by her as the most difficult of her books to write. It was first published in the United Kingdom by the Collins Crime Club on 6 November 1939 as Ten Little Niggers, after the British blackface song, which serves as a major plot point. The U.S. edition was not released until December 1939 with the title changed to the last five words in the original American version of the nursery rhyme, And Then There Were None. In the U.S., it was both adapted and reprinted as Ten Little Indians.',
                        author: authors[4],

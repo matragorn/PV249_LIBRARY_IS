@@ -5,7 +5,11 @@ class BorrowingsController < ApplicationController
   # GET /borrowings.json
   def index
     if current_user.has_role? :admin
-      @borrowings = Borrowing.all
+      if params[:search]
+        @borrowings = Borrowing.search(params[:search])
+      else
+        @borrowings = Borrowing.all.order('due_date ASC')
+      end
     else
       @borrowings = Borrowing.where(:user_id => current_user.id)
     end
