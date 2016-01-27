@@ -1,10 +1,21 @@
 
 <p>
-  <strong>Name:</strong>
-  <%= @author.name %>
+  <h1><%= @author.name %></h1>
 </p>
+<h3>
+  Books by <%= @author.name %>:
+</h3>
+<table class="table table-striped" >
+<% @books.each do |b| %>
+    <tr>
+      <td><%= link_to b.title, b  %></td>
+      <td><%=  b.description[0..120]  %>...</td>
+      <td>available at <%= link_to b.office.name, b.office %></td>
+    </tr>
+<% end %>
+</table>
 
 <% if current_user.has_role? :admin %>
-    <%= link_to 'Edit', edit_author_path(@author) %> |
+    <%= link_to 'Edit', edit_author_path(@author), :class=>"btn btn-warning" %> |
 <% end %>
-<%= link_to 'Back', authors_path %>
+<%= link_to 'Back', authors_path, :class=>"btn btn-primary"  %>
