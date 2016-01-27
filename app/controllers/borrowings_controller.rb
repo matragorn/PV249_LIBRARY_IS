@@ -11,7 +11,7 @@ class BorrowingsController < ApplicationController
         @borrowings = Borrowing.all.order('due_date ASC')
       end
     else
-      @borrowings = Borrowing.where(:user_id => current_user.id)
+      @borrowings = Borrowing.where(:user_id => current_user.id).order('due_date ASC')
     end
   end
 
