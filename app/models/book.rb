@@ -8,5 +8,18 @@ class Book < ActiveRecord::Base
     where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
   end
 
+  def self.free_books
+    free = Array.new
+    Book.all.order('title ASC').each do |book|
+      free.push(book)
+    end
+    Borrowing.all.each do |b|
+      if free.include?(b.book)
+        free.delete(b.book)
+      end
+    end
+    free
+  end
+
   resourcify
 end

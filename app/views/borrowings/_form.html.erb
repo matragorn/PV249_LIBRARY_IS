@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :book_id %><br>
-    <%= f.collection_select(:book_id, Book.all, :id, :title) %>
+    <%= f.collection_select(:book_id, Book.free_books, :id, :title) %>
   </div>
   <div class="field">
     <%= f.label :due_date %><br>
