@@ -8,7 +8,21 @@
 
 <p>
   <strong>You can borrow at:</strong>
-  <%= link_to @book.office.name, @book.office %>
+<table class = "table table-responsive ">
+  <tr>
+    <td>
+      <%= link_to @book.office.name, @book.office %>
+    </td>
+    <% if @borrowed %>
+        <td  bgcolor="#ffb6c1">
+          BORROWED
+    <% else %>
+        <td bgcolor="#90ee90">
+          FREE
+    <% end %>
+    </td>
+  </tr>
+</table>
 </p>
 
 
@@ -21,7 +35,7 @@
   <% @book.posts.each do |post| %>
       <tr>
         <td width="200">
-            <strong><%= link_to post.user.name, post.user %></strong>
+          <strong><%= link_to post.user.name, post.user %></strong>
         </td>
         <td>
           <strong><%= post.title %></strong>
@@ -39,18 +53,18 @@
 <%= form_for([@book, @book.posts.build]) do |f| %>
     <p>
       <%= f.label :title %><br>
-      <%= f.text_field :title , class: 'form-control' %>
+      <%= f.text_field :title, class: 'form-control' %>
     </p>
     <p>
       <%= f.label :body %><br>
-      <%= f.text_area :body , class: 'form-control' %>
+      <%= f.text_area :body, class: 'form-control' %>
     </p>
     <p>
-      <%= f.submit "Post",  class: 'btn btn-primary' %>
+      <%= f.submit "Post", class: 'btn btn-primary' %>
     </p>
 <% end %>
 <hr class="custom-hr">
 <% if current_user.has_role? :admin %>
-    <%= link_to 'Edit', edit_book_path(@book),:class => "btn btn-warning" %> |
+    <%= link_to 'Edit', edit_book_path(@book), :class => "btn btn-warning" %> |
 <% end %>
 <%= link_to 'Back', books_path, :class => "btn btn-primary" %>

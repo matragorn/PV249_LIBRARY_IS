@@ -8,5 +8,15 @@ class Book < ActiveRecord::Base
     where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
   end
 
+
+  def self.borrowed?(book)
+    Borrowing.all.each do |b|
+      if b.book == book
+        return true
+      end
+    end
+    false
+  end
+
   resourcify
 end
