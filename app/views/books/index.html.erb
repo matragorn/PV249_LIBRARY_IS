@@ -15,7 +15,19 @@
               <%= book.description %>
             </td>
             <td><%= link_to book.author.name, book.author %></td>
-            <td><%= link_to book.office.name, book.office %></td>
+            <td>
+              <%= link_to book.office.name, book.office %>
+              <br/>
+              <% if Book.borrowed? book %>
+                  <h4 style="color: #cc0000">
+                    BORROWED
+                  </h4>
+              <% else %>
+                    <h4 style="color: darkgreen">
+                      FREE
+                    </h4>
+              <% end %>
+            </td>
             <% if current_user.has_role? :admin %>
                 <td><%= link_to 'Edit', edit_book_path(book) , :class => "btn btn-warning"%>
                   <br/><br/>

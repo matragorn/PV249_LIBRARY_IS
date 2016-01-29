@@ -8,7 +8,21 @@
 
 <p>
   <strong>You can borrow at:</strong>
-  <%= link_to @book.office.name, @book.office %>
+<table class = "table table-responsive ">
+  <tr>
+    <td>
+      <%= link_to @book.office.name, @book.office %>
+    </td>
+    <% if @borrowed %>
+        <td  bgcolor="#ffb6c1">
+          BORROWED
+    <% else %>
+        <td bgcolor="#90ee90">
+          FREE
+    <% end %>
+    </td>
+  </tr>
+</table>
 </p>
 
 
