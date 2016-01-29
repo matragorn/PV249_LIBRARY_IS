@@ -34,7 +34,10 @@ class PostsController < ApplicationController
         format.html { redirect_to @book, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        # format.html { render :new }
+        @book.errors.add(:base, @post.errors)
+        @book.posts.delete(@post)
+        format.html { render 'books/show' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -57,9 +60,12 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    @book = Book.find(params[:book_id])
+    @post = @book.posts.find(params[:id])
+
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to @book, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
