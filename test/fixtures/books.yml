@@ -3,11 +3,17 @@
 one:
   title: MyString
   description: MyString
-  author_id: one
-  office_id: one
+  author: one
+  office: one
 
 two:
   title: MyString
   description: MyString
-  author_id: two
-  office_id: two
+  author: two
+  office: two
+
+kniha:
+  title: Kniha
+  description: kniha
+  author: two
+  office: two

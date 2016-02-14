@@ -24,7 +24,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @book = Book.find(params[:book_id])
+    @book = Book.find(post_params[:book_id]) if post_params[:book_id]
+    @book = Book.find(params[:book_id])if params[:book_id]
     # @post = Post.new(post_params)
     @post = @book.posts.create(post_params)
     @post.user = current_user
@@ -60,8 +61,8 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @book = Book.find(params[:book_id])
-    @post = @book.posts.find(params[:id])
+    @post = Post.find(params[:id])
+    @book = Book.find(@post.book_id)
 
     @post.destroy
     respond_to do |format|

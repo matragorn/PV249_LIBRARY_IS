@@ -2,7 +2,15 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   setup do
+    user = users (:admin)
+    user.add_role :admin
+    sign_in user
     @user = users(:one)
+
+  end
+
+  test "is Admin" do
+    assert_equal(true,((users (:admin)).has_role? :admin),"")
   end
 
   test "should get index" do
@@ -18,7 +26,8 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { name: @user.name }
+      post :create, user: { name: "milan",  }
+
     end
 
     assert_redirected_to user_path(assigns(:user))

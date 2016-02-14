@@ -2,6 +2,8 @@ require 'test_helper'
 
 class OfficesControllerTest < ActionController::TestCase
   setup do
+    user = users (:admin)
+    sign_in user
     @office = offices(:one)
   end
 
@@ -18,7 +20,7 @@ class OfficesControllerTest < ActionController::TestCase
 
   test "should create office" do
     assert_difference('Office.count') do
-      post :create, office: { address: @office.address, contact: @office.contact, name: @office.name }
+      post :create, office: { address: "adresa", contact: "mujmail", name: "poločnikvbrne" }
     end
 
     assert_redirected_to office_path(assigns(:office))
@@ -35,13 +37,14 @@ class OfficesControllerTest < ActionController::TestCase
   end
 
   test "should update office" do
-    patch :update, id: @office, office: { address: @office.address, contact: @office.contact, name: @office.name }
+    patch :update, id: @office, office: { address: "adresa", contact: "mujmail", name: "poločnikvbrne"}
+
     assert_redirected_to office_path(assigns(:office))
   end
 
   test "should destroy office" do
     assert_difference('Office.count', -1) do
-      delete :destroy, id: @office
+      delete :destroy, id: offices(:pobocka)
     end
 
     assert_redirected_to offices_path

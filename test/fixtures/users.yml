@@ -1,5 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+admin:
+  name: admin
+  email: admin@gmail.com
+  roles: user
+  encrypted_password: <%= Devise.bcrypt(User, 'password') %>
+  created_at: <%= 5.days.ago.to_s :db %>
+  confirmed_at: <%= 5.days.ago.to_s :db %>
 one:
   name: one
   email: one@gmail.com
@@ -7,3 +14,11 @@ one:
 two:
   name: two
   email: two@gmail.com
+
+quentin:
+  id: 1
+  name: quentin
+  email: quentin@example.com
+  encrypted_password: <%= Devise.bcrypt(User, 'password') %>
+  created_at: <%= 5.days.ago.to_s :db %>
+  roles: admin

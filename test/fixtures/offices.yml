@@ -9,3 +9,8 @@ two:
   name: MyString
   address: MyString
   contact: MyString
+
+pobocka:
+  name: MyString
+  address: MyString
+  contact: MyString

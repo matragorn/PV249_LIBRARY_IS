@@ -2,6 +2,9 @@ require 'test_helper'
 
 class AuthorsControllerTest < ActionController::TestCase
   setup do
+    (users (:admin)).add_role :admin
+    user = users (:admin)
+    sign_in user
     @author = authors(:one)
   end
 
@@ -16,9 +19,10 @@ class AuthorsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+
   test "should create author" do
     assert_difference('Author.count') do
-      post :create, author: { name: @author.name }
+      post :create, author: { name:"Artur" }
     end
 
     assert_redirected_to author_path(assigns(:author))
@@ -35,13 +39,14 @@ class AuthorsControllerTest < ActionController::TestCase
   end
 
   test "should update author" do
-    patch :update, id: @author, author: { name: @author.name }
+    patch :update, id: @author, author: { name: "Jelen" }
     assert_redirected_to author_path(assigns(:author))
   end
 
+
   test "should destroy author" do
     assert_difference('Author.count', -1) do
-      delete :destroy, id: @author
+      delete :destroy, id: authors(:autor)
     end
 
     assert_redirected_to authors_path

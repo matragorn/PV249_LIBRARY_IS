@@ -2,6 +2,9 @@ require 'test_helper'
 
 class TagsControllerTest < ActionController::TestCase
   setup do
+    (users (:admin)).add_role :admin
+    user = users (:admin)
+    sign_in user
     @tag = tags(:one)
   end
 
@@ -18,7 +21,7 @@ class TagsControllerTest < ActionController::TestCase
 
   test "should create tag" do
     assert_difference('Tag.count') do
-      post :create, tag: { name: @tag.name }
+      post :create, tag: { name: "name" }
     end
 
     assert_redirected_to tag_path(assigns(:tag))
@@ -35,7 +38,7 @@ class TagsControllerTest < ActionController::TestCase
   end
 
   test "should update tag" do
-    patch :update, id: @tag, tag: { name: @tag.name }
+    patch :update, id: @tag, tag: { name: "name" }
     assert_redirected_to tag_path(assigns(:tag))
   end
 

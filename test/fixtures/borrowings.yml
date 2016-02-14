@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: one
-  book_id: one
+  user: one
+  book: one
   due_date: 2016-01-19
 
 two:
-  user_id: two
-  book_id: two
+  user: two
+  book: two
   due_date: 2016-01-19

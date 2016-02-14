@@ -3,9 +3,17 @@
 one:
   title: MyString
   body: MyString
-  user_id: one
+  user: one
+  book: one
 
 two:
   title: MyString
   body: MyString
-  user_id: two
+  user: two
+  book: one
+
+post:
+  body: a
+  title: a
+  user: two
+  book: one

@@ -1,8 +1,14 @@
 require 'test_helper'
 
 class BooksControllerTest < ActionController::TestCase
+
+#  include AuthenticatedTestHelper
+#  fixtures :users
+
   setup do
-    @book = books(:one)
+   user = users (:admin)
+   sign_in user
+   @book = books(:one)
   end
 
   test "should get index" do
@@ -18,13 +24,13 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should create book" do
     assert_difference('Book.count') do
-      post :create, book: { author_id: @book.author_id, description: @book.description, office_id: @book.office_id, title: @book.title }
+      post :create, book: { author: authors(:two), description: "test", office: offices(:two), title: "ppppppt" }
     end
-
     assert_redirected_to book_path(assigns(:book))
   end
 
   test "should show book" do
+
     get :show, id: @book
     assert_response :success
   end
@@ -35,13 +41,13 @@ class BooksControllerTest < ActionController::TestCase
   end
 
   test "should update book" do
-    patch :update, id: @book, book: { author_id: @book.author_id, description: @book.description, office_id: @book.office_id, title: @book.title }
+    patch :update, id: @book, book: { author: authors(:one), description: "aaaa", office: offices(:one), title:  "tts"  }
     assert_redirected_to book_path(assigns(:book))
   end
 
   test "should destroy book" do
     assert_difference('Book.count', -1) do
-      delete :destroy, id: @book
+      delete :destroy, id: books(:kniha)
     end
 
     assert_redirected_to books_path

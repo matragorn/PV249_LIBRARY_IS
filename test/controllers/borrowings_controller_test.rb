@@ -2,6 +2,8 @@ require 'test_helper'
 
 class BorrowingsControllerTest < ActionController::TestCase
   setup do
+    user = users (:admin)
+    sign_in user
     @borrowing = borrowings(:one)
   end
 
@@ -18,7 +20,7 @@ class BorrowingsControllerTest < ActionController::TestCase
 
   test "should create borrowing" do
     assert_difference('Borrowing.count') do
-      post :create, borrowing: { book_id: @borrowing.book_id, due_date: @borrowing.due_date, user_id: @borrowing.user_id }
+      post :create, borrowing: { book: books(:one), due_date: DateTime.now, user: users(:quentin) }
     end
 
     assert_redirected_to borrowing_path(assigns(:borrowing))
@@ -35,7 +37,7 @@ class BorrowingsControllerTest < ActionController::TestCase
   end
 
   test "should update borrowing" do
-    patch :update, id: @borrowing, borrowing: { book_id: @borrowing.book_id, due_date: @borrowing.due_date, user_id: @borrowing.user_id }
+    patch :update, id: @borrowing, borrowing: {book: books(:one), due_date: DateTime.now, user: users(:quentin)  }
     assert_redirected_to borrowing_path(assigns(:borrowing))
   end
 
