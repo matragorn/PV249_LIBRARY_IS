@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+
+
 gem 'exception_notification'
 gem 'mailjet'
 gem "paperclip", "~> 4.3"
@@ -45,6 +47,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'guard-minitest', '~> 2.3.2' # https://github.com/guard/guard-minitest
+  # Colorize minitest output and show failing tests instantly.
+  gem 'minitest-colorize', git: 'https://github.com/ysbaddaden/minitest-colorize'
+  # https://github.com/Springest/terminal-notifier-guard
+  gem 'terminal-notifier-guard', '~> 1.5.3'
 end
 
 group :development do

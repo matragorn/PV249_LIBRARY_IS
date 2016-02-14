@@ -3,11 +3,11 @@
 one:
   title: MyString
   description: MyString
-  author_id: 
-  office_id: 
+  author_id: one
+  office_id: one
 
 two:
   title: MyString
   description: MyString
-  author_id: 
-  office_id: 
+  author_id: two
+  office_id: two
