@@ -35,6 +35,7 @@ class BorrowingsController < ApplicationController
     @borrowing = Borrowing.new(borrowing_params)
 
     unless book_free?
+
       respond_to do |format|
         format.html { redirect_to @borrowing, notice: 'Borrowing was unsuccessfull. Book is already borrowed.' }
         format.json { render :show, status: :created, location: @borrowing }

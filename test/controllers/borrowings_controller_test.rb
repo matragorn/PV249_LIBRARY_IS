@@ -18,11 +18,17 @@ class BorrowingsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should not_create borrowing_book_already_borrowed" do
+    assert_no_difference('Borrowing.count') do
+      post :create, borrowing: { book_id: books(:one).id, due_date: DateTime.now, user_id: users(:quentin).id }
+    end
+  end
+
+
   test "should create borrowing" do
     assert_difference('Borrowing.count') do
-      post :create, borrowing: { book: books(:one), due_date: DateTime.now, user: users(:quentin) }
+      post :create, borrowing: { book_id: books(:kniha).id, due_date: DateTime.now, user_id: users(:quentin).id }
     end
-
     assert_redirected_to borrowing_path(assigns(:borrowing))
   end
 
