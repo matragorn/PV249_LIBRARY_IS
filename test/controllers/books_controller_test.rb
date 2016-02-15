@@ -47,7 +47,7 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should destroy book" do
     assert_difference('Book.count', -1) do
-      delete :destroy, id: books(:kniha)
+      delete :destroy, id: books(:freeBook)
     end
 
     assert_redirected_to books_path

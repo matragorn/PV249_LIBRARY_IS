@@ -9,3 +9,8 @@ two:
   user: two
   book: two
   due_date: 2016-01-19
+
+myBorrowing:
+  user: quentin
+  book: kniha
+  due_date: 2016-01-19

@@ -17,3 +17,9 @@ kniha:
   description: kniha
   author: two
   office: two
+
+freeBook:
+  title: Free Book
+  description: Book with no borrowings
+  author: one
+  office: two

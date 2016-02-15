@@ -27,7 +27,7 @@ class BorrowingsControllerTest < ActionController::TestCase
 
   test "should create borrowing" do
     assert_difference('Borrowing.count') do
-      post :create, borrowing: { book_id: books(:kniha).id, due_date: DateTime.now, user_id: users(:quentin).id }
+      post :create, borrowing: { book_id: books(:freeBook).id, due_date: DateTime.now, user_id: users(:quentin).id }
     end
     assert_redirected_to borrowing_path(assigns(:borrowing))
   end
