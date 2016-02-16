@@ -6,7 +6,7 @@ class BorrowingTest < ActiveSupport::TestCase
   # end
 
   test 'borrowing title search' do
-    borrowings = Borrowing.search('kniha')
+    borrowings = Borrowing.search('Kniha')
     assert_not_empty borrowings
   end
 

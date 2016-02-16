@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class BookTest < ActiveSupport::TestCase
+  self.use_instantiated_fixtures = true
+
   # test "the truth" do
   #   assert true
   # end
@@ -17,7 +19,7 @@ class BookTest < ActiveSupport::TestCase
   end
 
   test 'book borrowed' do
-    assert_equal(false, Book.borrowed?(:kniha))
-    assert_equal(true, Book.borrowed?(:one))
+    assert_equal(true, Book.borrowed?(books(:kniha)))
+    assert_equal(false, Book.borrowed?(books(:freeBook)))
   end
 end

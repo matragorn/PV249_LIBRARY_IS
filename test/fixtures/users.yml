@@ -16,7 +16,6 @@ two:
   email: two@gmail.com
 
 quentin:
-  id: 1
   name: quentin
   email: quentin@example.com
   encrypted_password: <%= Devise.bcrypt(User, 'password') %>
